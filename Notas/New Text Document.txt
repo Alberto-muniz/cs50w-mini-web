@@ -1,0 +1,84 @@
+
+def get_grades(): #✅ Definimos la función
+
+grades = [] Show more lines ✅ Lista vacía ✅ Aquí se guardarán las calificaciones
+
+while True:✅ Loop infinito
+
+grade = input("Enter a grade (or 'q' to finish): ")✅ Pide una calificación ✅ Aún es texto (string)
+
+        if grade == "q":
+            break ✅ Forma clara de salir del loop
+
+grades.append(int(grade))Show more lines ✅ Convierte el texto a número ✅ Guarda el número en la lista
+
+return grades✅ Devuelve la lista completa
+
+
+---------------------------------------------------------------------------------------------------------------
+
+def calculate_average(grades):def calculate_average(grades):Show more lines
+✅ Definimos la función
+✅ Recibe una lista llamada grades
+
+
+    if len(grades) == 0:
+        return 0
+✅ Caso especial: lista vacía
+✅ Evita error de división entre cero
+✅ Devuelve algo lógico
+
+
+
+    total = 0
+✅ Variable acumuladora
+✅ Empieza en cero
+
+
+    for grade in grades:
+        total += grade
+✅ Recorremos la lista
+✅ Sumamos cada calificación
+
+
+
+    average = total / len(grades)
+✅ Calculamos el promedio
+✅ Usamos len() correctamente
+
+    return average
+✅ Devolvemos el resultado
+✅ La función termina aquí
+
+
+
+--------------------------------------------------------------------------------------------------
+
+def calculate_average(grades):
+    if len(grades) == 0:
+        return 0
+
+    total = 0
+    for grade in grades:
+        total += grade
+
+    average = total / len(grades)
+    return average
+------------------------------------------------------------------------------------------------------
+get_grades() → devuelve una lista
+calculate_average() → devuelve un número
+show_result() → no devuelve nada, solo imprime
+
+
+👉 show_result(average)
+Esta función:
+
+✅ recibe el promedio
+✅ lo imprime bonito
+
+--------------------------------------------------------------------------------------
+
+get_grades() → input
+calculate_average() → lógica
+show_result() → output
+main() → coordinación
