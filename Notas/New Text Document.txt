@@ -82,3 +82,121 @@ get_grades() → input
 calculate_average() → lógica
 show_result() → output
 main() → coordinación
+
+git status  lo que falta por guardar o cambios 
+git add - agregar para saber que guardar en repo-nube
+git commit -m "Add console cash register project (CS50 practice)"
+git push-- guardar en repo-nube
+git ls-files muestra las carpetas
+
+
+# ---------- FUNCTION 1: SAVE EXPENSES TO A FILE ----------
+def save_expenses():
+    # Abre (o crea si no existe) el archivo "expenses.txt" en modo append ("a")
+    # "append" significa que agrega al final sin borrar lo anterior
+    with open("expenses.txt", "a") as file:
+        
+        # Bucle infinito para pedir muchos gastos hasta que el usuario escriba 'q'
+        while True:
+            
+            # Pide al usuario un gasto o 'q' para terminar
+            value = input("Enter an expense (or 'q' to finish): ")
+
+            # Si el usuario escribe 'q', salimos del bucle
+            if value == "q":
+                break
+
+            # Escribe el gasto en el archivo + salto de línea
+            # "\n" hace que cada gasto quede en una línea separada
+            file.write(value + "\n")
+
+
+# ---------- FUNCTION 2: READ EXPENSES FROM A FILE ----------
+def read_expenses():
+    # Creamos una lista vacía donde guardaremos los gastos ya convertidos a números
+    expenses = []
+
+    # try/except evita que el programa se rompa si el archivo no existe
+    try:
+        # Abre el archivo en modo lectura ("r")
+        with open("expenses.txt", "r") as file:
+            
+            # Recorre el archivo línea por línea
+            for line in file:
+                
+                # line tiene algo como "50\n", strip() quita el "\n"
+                # int(...) convierte el texto a número
+                # append(...) agrega ese número a la lista expenses
+                expenses.append(int(line.strip()))
+    
+    # Si el archivo no existe, no hacemos nada y regresamos lista vacía
+    except FileNotFoundError:
+        pass  # "pass" significa: no hagas nada, solo continúa
+
+    # Regresa la lista de gastos (puede estar vacía si no hay archivo o no hay datos)
+    return expenses
+
+
+# ---------- FUNCTION 3: TOTAL CALCULATION ----------
+def calculate_total(expenses):
+    # Inicializamos el total en 0 (acumulador)
+    total = 0
+
+    # Recorremos cada gasto de la lista
+    for expense in expenses:
+        # Sumamos el gasto actual al total
+        total += expense
+
+    # Regresamos el total final
+    return total
+
+
+# ---------- FUNCTION 4: AVERAGE CALCULATION ----------
+def calculate_average(expenses):
+    # Si no hay gastos, evitamos dividir entre 0 y regresamos 0
+    if len(expenses) == 0:
+        return 0
+
+    # Calculamos el promedio: total / cantidad de gastos
+    # Reutilizamos calculate_total() para mantener el diseño limpio (Lecture 5)
+    return calculate_total(expenses) / len(expenses)
+
+
+# ---------- MAIN PROGRAM ----------
+def main():
+    # Primero pedimos gastos al usuario y los guardamos en el archivo
+    save_expenses()
+
+    # Luego leemos TODO lo que hay guardado en el archivo y lo ponemos en una lista
+    expenses = read_expenses()
+
+    # Calculamos el total de los gastos
+    total = calculate_total(expenses)
+
+    # Calculamos el promedio de los gastos
+    average = calculate_average(expenses)
+
+    # Mostramos el total
+    print("Total expenses:", total)
+
+    # Mostramos el promedio
+    print("Average expense:", average)
+
+
+# Ejecuta el programa (llama a main)
+main()
+
+
+🔑 ORDEN UNIVERSAL DE CODIFICACIÓN
+Cuando ya tienes el mapa, escribe SIEMPRE en este orden:
+1️⃣ función que pide datos
+2️⃣ función que procesa datos
+3️⃣ función que muestra resultados
+4️⃣ main() que conecta todo
+👉 Nunca empieces por main()
+👉 Nunca empieces por cálculos
+Eso es lo que te estaba trabando.
+
+
+
+
