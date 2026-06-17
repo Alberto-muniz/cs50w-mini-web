@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IT Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f6f9;
+            margin: 0;
+        }
+
+        .header {
+            background-color: #005BAC;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .pc {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .online {
+            color: green;
+            font-weight: bold;
+        }
+
+        .offline {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Flex IT Dashboard</h1>
+    </div>
+
+    <div class="container">
+        <div class="card">
+
+            <h2>Computer Status</h2>
+
+            {% for pc in computers %}
+                <div class="pc">
+                    {{ pc.name }} -
+
+                    {% if pc.status == "Online" %}
+                        <span class="online">Online </span>
+                    {% else %}
+                        <span class="offline">Offline</span>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</body>
+</html>
